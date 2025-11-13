@@ -131,6 +131,25 @@ public class TaskService {
             .createdAt(task.getCreatedAt())
             .build();
     }
+
+    public String deleteTask(Long id){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
+            
+        Task task = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException("No such task found"));
+
+        if (!task.getUser().getId().equals(user.getId())) {
+            throw new UnauthorizedActionException("You are not authorized to view this task");
+        }      
+        
+        taskRepository.deleteById(id);
+
+        return "Task deleted successfully!";
+    }
 }
 
 

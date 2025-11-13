@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,5 +51,13 @@ public class TaskController {
     @GetMapping("/{id}")
     public ResponseEntity<GetTaskResponseDto>getTaskById(@PathVariable Long id){
         return ResponseEntity.ok(taskService.getTask(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String,String>>deleteTask(@PathVariable Long id){
+        String message = taskService.deleteTask(id);
+        Map<String,String>response=new HashMap<>();
+        response.put("message", message);
+        return ResponseEntity.ok(response);
     }
 }
