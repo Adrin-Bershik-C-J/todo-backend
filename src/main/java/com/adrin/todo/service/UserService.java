@@ -63,4 +63,8 @@ public class UserService {
     }   
     
     //profile update
+
+    //change password
+
+    //register after otp verification
 }

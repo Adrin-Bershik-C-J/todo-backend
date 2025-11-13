@@ -11,8 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class AddTaskRequestDto {
 
     @NotBlank(message = "Title cannot be blank")
