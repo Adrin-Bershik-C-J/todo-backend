@@ -11,6 +11,8 @@ import lombok.Data;
 @Data
 @Builder
 public class GetTaskResponseDto {
+
+    private Long id;
     
     private String title;
 

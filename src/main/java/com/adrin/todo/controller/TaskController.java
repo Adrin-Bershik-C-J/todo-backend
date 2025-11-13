@@ -46,4 +46,9 @@ public class TaskController {
         response.put("message", message);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GetTaskResponseDto>getTaskById(@PathVariable Long id){
+        return ResponseEntity.ok(taskService.getTask(id));
+    }
 }

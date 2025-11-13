@@ -62,6 +62,7 @@ public class TaskService {
 
         return tasks.stream()
         .map(task->GetTaskResponseDto.builder()
+        .id(task.getId())
         .title(task.getTitle())
         .description(task.getDescription())
         .priority(task.getPriority())
@@ -105,6 +106,30 @@ public class TaskService {
 
         return "Task updated successfully";
         
+    }
+
+    public GetTaskResponseDto getTask(Long id){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
+            
+        Task task = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException("No such task found"));
+
+        if (!task.getUser().getId().equals(user.getId())) {
+            throw new UnauthorizedActionException("You are not authorized to view this task");
+        }        
+
+        return GetTaskResponseDto.builder()
+            .id(task.getId())
+            .title(task.getTitle())
+            .description(task.getDescription())
+            .priority(task.getPriority())
+            .status(task.getStatus())
+            .createdAt(task.getCreatedAt())
+            .build();
     }
 }
 
