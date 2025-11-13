@@ -60,5 +60,7 @@ public class UserService {
         } catch (AuthenticationException ex) {
             throw new BadCredentialsException("Invalid email or password");
         }           
-    }    
+    }   
+    
+    //profile update
 }

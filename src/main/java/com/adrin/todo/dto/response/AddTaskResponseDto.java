@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TaskResponseDto {
+public class AddTaskResponseDto {
     
     private String message;
 }
