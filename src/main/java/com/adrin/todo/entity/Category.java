@@ -46,6 +46,6 @@ public class Category {
     @JoinColumn(name = "user_id", nullable = false) 
     private User user;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
+    // @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    // private List<Task> tasks;
 }

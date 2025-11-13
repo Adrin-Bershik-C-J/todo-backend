@@ -18,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Task {
     
     @Id
@@ -50,9 +52,9 @@ public class Task {
     @Column(updatable = false, name = "created_at")
     private LocalDateTime createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = true)
-    private Category category;
+    // @ManyToOne
+    // @JoinColumn(name = "category_id", nullable = true)
+    // private Category category;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false) 
